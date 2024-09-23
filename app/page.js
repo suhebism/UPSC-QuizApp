@@ -1,9 +1,24 @@
-import Image from "next/image";
-
+import React from "react";
+import Nav from "@/components/Nav";
+import Badges from "@/components/Badges"
+import QuizCard from '../components/QuizCard';
+import Link from "next/link";
+import Slider from "@/components/Slider";
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      Hello - PWA App
+    <div className="flex flex-col gap-2 ">
+      <Nav/>
+      <Badges />
+      <div className="px-5 flex justify-between items-end mt-3">
+        <h1 className="text-white text-lg font-black">Active cources</h1>
+        <Link  href="/all-quiz"><h1 className="text-white text-sm font-normal underline">View all</h1></Link>
+      </div>
+      <QuizCard />
+      <div className="px-5 flex justify-between items-end mt-4">
+        <h1 className="text-white text-lg font-black">Featured</h1>
+        <h1 className="text-white text-sm font-normal underline">View all</h1>
+      </div>
+      <Slider/>
     </div>
   );
 }
