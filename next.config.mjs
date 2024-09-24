@@ -1,42 +1,17 @@
-// // /** @type {import('next').NextConfig} */
-// // const nextConfig = {};
-
-// // export default nextConfig;
-
-// import withPWA from 'next-pwa';
-
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//     // output:'export',
-//     images:{
-//       unoptimized: false,
-//       domains:['images.unsplash.com']
-//     }
-// };
-
-// export default withPWA({
-//     dest: "public",         // destination directory for the PWA files
-//     // disable: process.env.NODE_ENV === "development",        // disable PWA in the development environment
-//     register: true,         // register the PWA service worker
-//     skipWaiting: true,      // skip waiting for service worker activation
-// })(nextConfig);
-
-
-
-
 import withPWA from 'next-pwa';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,  // This should be part of Next.js config, not next-pwa
-    images: {
-      unoptimized: false,
-      domains: ['images.unsplash.com']
-    }
+  reactStrictMode: true,  // Enabling React strict mode for better debugging in dev
+  images: {
+    unoptimized: false,  // Enabling image optimization
+    domains: ['images.unsplash.com'],  // Whitelisted domains for images
+  },
 };
 
 export default withPWA({
-    dest: "public",          // PWA files destination
-    register: true,          // Register the service worker
-    skipWaiting: true,       // Skip waiting for service worker activation
+  dest: 'public',  // PWA files destination
+  register: true,  // Register service worker
+  skipWaiting: true,  // Skip waiting for service worker activation
+  disable: process.env.NODE_ENV !== 'production',  // Disable PWA in all environments except production
 })(nextConfig);
