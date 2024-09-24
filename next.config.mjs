@@ -1,20 +1,27 @@
-// Import the PWA plugin
 import withPWA from 'next-pwa';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Ensure 'output' is set to 'export' for static generation
-    // output: 'export',
+    output: 'export',   // Ensure 'export' for static generation
     images: {
-      unoptimized: false,
+      unoptimized: true, // Disable image optimization since it's incompatible with 'output: export'
       domains: ['images.unsplash.com']
+    },
+    // Specify fallback page for PWA to handle 404 in static exports
+    trailingSlash: true,
+    experimental: {
+      // This experimental setting can help resolve issues with static exports and PWA in some versions
+      appDir: false,
     }
 };
 
-// Export the config with PWA integration
+
 export default withPWA({
-    dest: 'public',         // Directory for PWA files
-    register: process.env.NODE_ENV === 'production', // Only register the service worker in production
-    skipWaiting: true,      // Activate the new service worker immediately
-    disable: process.env.NODE_ENV === 'development', // Disable PWA in development mode
+  dest: 'public',
+  register: process.env.NODE_ENV === 'production', // Register SW in production
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development', // Disable PWA in dev
+  fallbacks: {         // Provide fallbacks for PWA in static export
+      document: '/_offline', // Static offline page
+  },
 })(nextConfig);
