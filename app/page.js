@@ -10,7 +10,7 @@ export default function Home() {
       <Nav/>
       <Badges />
       <div className="px-5 flex justify-between items-end mt-3">
-        <h1 className="text-white text-lg font-black">Active cources</h1>
+        <h1 className="text-white text-lg font-black">Active cource</h1>
         <Link  href="/all-quiz"><h1 className="text-white text-sm font-normal underline">View all</h1></Link>
       </div>
       <QuizCard />
