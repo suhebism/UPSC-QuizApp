@@ -1,22 +1,17 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {};
-
-// export default nextConfig;
-
 import withPWA from 'next-pwa';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // output:'export',
-    images:{
-      unoptimized: false,
-      domains:['images.unsplash.com']
+    output: 'export',  // Un-comment this to enable static export
+    images: {
+      unoptimized: false,  // You can adjust this for optimization needs
+      domains: ['images.unsplash.com'],
     }
 };
 
 export default withPWA({
-    dest: "public",         // destination directory for the PWA files
-    // disable: process.env.NODE_ENV === "development",        // disable PWA in the development environment
-    register: true,         // register the PWA service worker
-    skipWaiting: true,      // skip waiting for service worker activation
+    dest: "public",         // Destination directory for PWA files
+    register: true,         // Register the service worker
+    skipWaiting: true,      // Skip waiting for service worker activation
+    disable: process.env.NODE_ENV === "development"  // Disable PWA in development
 })(nextConfig);
