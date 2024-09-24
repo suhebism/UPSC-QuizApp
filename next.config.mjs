@@ -1,18 +1,18 @@
 import withPWA from 'next-pwa';
 
-// Temporarily disable PWA
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',  // Static export for GitHub Pages
   reactStrictMode: true,
+  output: 'export',  // For static site generation
   images: {
-    unoptimized: true,  // Static export requires unoptimized images
+    unoptimized: true,  // Disable image optimization for static export
+    domains: ['images.unsplash.com'],
   },
 };
 
 export default withPWA({
-  dest: 'public', // PWA files destination
-  register: true, // Register service worker
-  skipWaiting: true, // Skip waiting for service worker activation
-  disable: process.env.NODE_ENV !== 'production', // Disable PWA in non-production environments
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV !== 'production',  // Enable PWA only in production
 })(nextConfig);
