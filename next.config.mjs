@@ -18,9 +18,9 @@ const nextConfig = {
 
 export default withPWA({
   dest: 'public',
-  register: process.env.NODE_ENV === 'production', // Register SW in production
+  // register: process.env.NODE_ENV === 'production', // Register SW in production
   skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development', // Disable PWA in dev
+  // disable: process.env.NODE_ENV === 'development', // Disable PWA in dev
   fallbacks: {         // Provide fallbacks for PWA in static export
       document: '/_offline', // Static offline page
   },
