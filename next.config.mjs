@@ -3,6 +3,7 @@ import withPWA from 'next-pwa';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'export',  // For static site generation
   images: {
     unoptimized: true,  // Disable image optimization for static export
     domains: ['images.unsplash.com'],
