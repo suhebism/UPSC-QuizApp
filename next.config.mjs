@@ -4,7 +4,7 @@ import withPWA from 'next-pwa';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // Ensure 'output' is set to 'export' for static generation
-    output: 'export',
+    // output: 'export',
     images: {
       unoptimized: false,
       domains: ['images.unsplash.com']
