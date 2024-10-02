@@ -6,9 +6,9 @@ import { Book } from "lucide-react";
 const page = ({ quizLevelData }) => {
   return (
     <div className="mx-5 p-5 w-[350px] h-[300px] bg-mainGreen rounded-3xl flex flex-col justify-between">
-      <div className="flex flex-col justify-between">
-        <div className="flex items-center justify-between">
-          <h1 className="text-black font-extrabold text-2xl">
+      <div className="flex flex-col justify-between gap-3">
+        <div className="flex items-start justify-between w-full">
+          <h1 className="text-black font-extrabold text-4xl w-1/2">
             {quizLevelData.title}
           </h1>
           <div className="font-semibold text-xs">
@@ -18,13 +18,13 @@ const page = ({ quizLevelData }) => {
 
         <div className="flex gap-2">
           <Book strokeWidth={2} size={20} />
-          <p className="font-semibold text-sm">{`Subject - Chapter ${quizLevelData.chapter}`}</p>
+          <p className="font-semibold ">{`Subject - Chapter ${quizLevelData.chapter}`}</p>
         </div>
         </div>
         <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between gap-1">
-          <p className="font-medium text-sm">1 week left</p>
-          <p className="font-medium text-sm">+25 XP</p>
+        <div className="flex items-center justify-between gap-1 mx-2">
+          <p className="font-semibold">1 week left</p>
+          <p className="font-semibold text-sm">+25 XP</p>
         </div>
         <Link href={`/quiz/${quizLevelData.id}`}>
           <Button />
