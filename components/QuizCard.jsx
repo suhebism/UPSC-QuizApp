@@ -5,7 +5,7 @@ import Button from "./Button";
 import { Book } from "lucide-react";
 const page = ({ quizLevelData }) => {
   return (
-    <div className="mx-5 p-5 w-[350px] h-[300px] bg-mainGreen rounded-3xl flex flex-col justify-between">
+    <Link href={`/quiz/${quizLevelData.id}`} className="mx-5 p-5 w-[350px] h-[300px] bg-mainGreen rounded-3xl flex flex-col justify-between">
       <div className="flex flex-col justify-between gap-3">
         <div className="flex items-start justify-between w-full">
           <h1 className="text-black font-extrabold text-4xl w-1/2">
@@ -26,9 +26,9 @@ const page = ({ quizLevelData }) => {
           <p className="font-semibold">1 week left</p>
           <p className="font-semibold text-sm">+25 XP</p>
         </div>
-        <Link href={`/quiz/${quizLevelData.id}`}>
+        <div >
           <Button />
-        </Link>
+        </div>
         </div>
         {/* <div className='flex flex-col items-center gap-1'>
           <div className='flex flex-row gap-1'>
@@ -39,27 +39,9 @@ const page = ({ quizLevelData }) => {
         </div> */}
         
       
-    </div>
+    </Link>
   );
 };
 
 export default page;
 
-// components/QuizCard.jsx
-
-// Example QuizCard component (simplified)
-// import Link from 'next/link';
-
-// const QuizCard = ({ quizLevelData }) => {
-//   return (
-//     <div className="quiz-card">
-//       <h2>{quizLevelData.title}</h2>
-//       <p>{`Subject - Chapter ${quizLevelData.chapter}`}</p>
-//       <p>1 week left</p>
-//       <p>+25 XP</p>
-//       <Link href={`/quiz/${quizLevelData.id}`}>Continue Learning</Link>
-//     </div>
-//   );
-// };
-
-// export default QuizCard;

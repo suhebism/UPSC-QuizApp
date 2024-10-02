@@ -5,7 +5,7 @@ import { Scale, X } from 'lucide-react';
 import ProgressBar from './ProgressBar';
 import Image from 'next/image';
 import bird from '../public/img/bird.png';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 const QuizLevel = ({ quizLevelData, currentLevel }) => {
   const router = useRouter();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -66,25 +66,36 @@ const QuizLevel = ({ quizLevelData, currentLevel }) => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen pt-5 pb-10 justify-between">
-      <X className="fixed top-5 left-5 text-white cursor-pointer" onClick={promptToClose}/>{
-        prompt &&(
+    <motion.div
+    initial={{ opacity: 0 }} // Initial state (hidden)
+    animate={{ opacity: 1 }} // End state (visible)
+    transition={{ duration: 0.5 }} // Transition duration
+    className="flex flex-col items-center h-screen pt-5 pb-10 justify-between">
+      <X className="fixed top-5 left-5 text-white cursor-pointer" onClick={promptToClose}/>
+      <AnimatePresence>
+      {prompt &&(    
           <div
-          className='fixed z-50 h-screen w-screen bg-opacity-50 backdrop-blur-md bg-black text-white flex gap-10 items-center justify-center'>
-            <motion.div
-             initial={{opacity:0, scale: .5 }}  // Initial scale of 0
-             animate={{opacity:1, scale: 1 }}  // Animate to scale of 1
-             exit={{ scale: 0 }}     // When exiting, scale back to 0
-             transition={{ duration: .2, ease: "easeInOut" }}  // Animation properties
-            className='h-20 w-1/2 bg-green-700 flex items-center justify-around'
-            onClick={(e) => e.stopPropagation()}  // Stop propagation inside green part
-            >
-              <button className='w-20 bg-white text-black rounded-full' onClick={()=>confirmExit('yes')}>Yes</button>
-              <button className='w-20 bg-white text-black rounded-full'  onClick={()=>confirmExit('no')}>No</button>
-            </motion.div>
-          </div>
+          className='fixed z-50 h-screen w-screen bg-opacity-50 backdrop-blur-md bg-black text-white flex items-center justify-center transition ease-in-out delay-500 duration-500'
+          onClick={() => setPrompt(false)} // Close modal when clicking outside
+          >
+          <motion.div
+            initial={{ y: -200 }}
+            animate={{ y: 0 }}
+            exit={{ y: -200 }} // Exit animation
+            transition={{ duration: 0.2, ease: "easeInOut" }} // Adjust duration for exit animation
+            className='absolute -top-5 h-[160px] w-screen bg-green-700 flex flex-col items-center justify-around rounded-b-3xl'
+            onClick={(e) => e.stopPropagation()} // Prevent click from propagating to the backdrop
+          >
+            <h1 className='font-semibold text-lg'>Do you really want to exit?</h1>
+            <div className='flex gap-5'>
+              <button className='w-32 h-10 bg-white text-black font-medium text-lg rounded-full' onClick={() => confirmExit('yes')}>Yes</button>
+              <button className='w-32 h-10 bg-black text-white font-medium text-lg rounded-full' onClick={() => confirmExit('no')}>No</button>
+            </div>
+          </motion.div>
+        </div>
         )
       }
+      </AnimatePresence>
       <div className='w-full'>
         <h2 className="text-white text-center text-lg mb-2">{`Question ${currentQuestionIndex + 1} of ${questions.length}`}</h2>
         <ProgressBar currentQuestionIndex={currentQuestionIndex} totalQuestions={totalQuestions} />
@@ -135,8 +146,8 @@ const QuizLevel = ({ quizLevelData, currentLevel }) => {
       </div>
       <div className='w-full flex items-center justify-center'>
         <button
-                className={` bottom-5 w-[350px] h-14 font-bold rounded-full bg-white text-black transition-all duration-300 ${
-                  selectedAnswer === null ? 'border-[1px] border-[#767676] bg-transparent text-[#767676] cursor-not-allowed' : 'opacity-100'
+                className={` bottom-5 w-[350px] h-14 font-bold rounded-full bg-green-500 text-white transition-all duration-300 ${
+                  selectedAnswer === null ? 'opacity-50 cursor-not-allowed' : 'opacity-100'
                 }`}
                 disabled={selectedAnswer === null}
                 onClick={handleSubmit}
@@ -144,7 +155,7 @@ const QuizLevel = ({ quizLevelData, currentLevel }) => {
                 Submit
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

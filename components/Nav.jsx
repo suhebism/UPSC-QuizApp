@@ -44,7 +44,7 @@ const Nav = () => {
         exit={{ x: -500 }}
         transition={{ ease: "easeInOut", duration: 0.5 }}
         className="fixed w-screen h-screen bg-[#161515] bg-opacity-10 flex flex-col items-center backdrop-blur-lg z-10">
-            <div className="text-white fixed top-2 right-2" onClick={()=>(setToggle(false))}>Close</div>
+            <div className="text-white fixed top-2 right-2 cursor-pointer" onClick={()=>(setToggle(false))}>Close</div>
             <UserAvatar/>
             <div className="flex flex-col ga-10 w-full items-start px-5 gap-4">
               <Link href='/topics' className="text-white font-semibold text-lg flex gap-2">

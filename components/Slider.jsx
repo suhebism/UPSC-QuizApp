@@ -64,7 +64,7 @@ const Slider = () => {
           {banners.map((banner) => (
             <div
               key={banner.id}
-              className="min-w-full flex flex-col items-start justify-start text-white px-5 gap-3"
+              className="min-w-full flex flex-col items-start justify-start text-white px-5 gap-3 cursor-pointer select-none"
             >
               <h2 className="text-sm font-bold">{banner.text}</h2>
               <div className="bg-[#BAD8F4] h-20 w-full p-4 rounded-lg flex items-center justify-between">
